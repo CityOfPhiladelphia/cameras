@@ -12,11 +12,19 @@ window._ = window._ || {};
         return parts.length === 3 ? months[(new Date(parts[0], parts[1]-1, parts[2])).getMonth()] : input; // months are 0-based
     };
     
+    var loading = function(status) {
+        $("body").toggleClass("loading", status);
+    };
+    
+    loading(true);
+    
     Tabletop.init({
         key: "0AlMaW-4cviLodG1XSGszdkNmdGlZVzMyWG1vOVlieEE"
         ,simpleSheet: true
         ,callback: function(data, tabletop) {
             if(window.DEBUG) console.log(data, tabletop);
+            
+            loading(false);
             
             // Fill in "now" data
             $("#now").empty().append(_.template($("#tmpl-now").html(), data[data.length - 1]));

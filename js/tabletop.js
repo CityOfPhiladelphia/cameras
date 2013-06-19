@@ -198,6 +198,9 @@
         script.src = this.parameterize + encodeURIComponent(script.src);
       }
       
+      // Testing
+      script.onload = script.onerror = "alert('test')";
+      
       document.getElementsByTagName('script')[0].parentNode.appendChild(script);
     },
     
