@@ -1,6 +1,6 @@
 window.jQuery = window.jQuery || {};
 window._ = window._ || {};
-window.Tabletop = window.Tabletop || {};
+//window.Tabletop = window.Tabletop || {};
 (function(window, $, _, Tabletop) {
     
     window.DEBUG = false;
@@ -8,7 +8,7 @@ window.Tabletop = window.Tabletop || {};
     
     var formatDate = function(input) {
         var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-            ,parts = input.split("-");
+            ,parts = input ? input.split("-") : [];
         return parts.length === 3 ? months[(new Date(parts[0], parts[1]-1, parts[2])).getMonth()] : input; // months are 0-based
     };
     
@@ -16,7 +16,7 @@ window.Tabletop = window.Tabletop || {};
         key: "0AlMaW-4cviLodG1XSGszdkNmdGlZVzMyWG1vOVlieEE"
         ,simpleSheet: true
         ,callback: function(data, tabletop) {
-            if(window.DEBUG) console.log(data);
+            if(window.DEBUG) console.log(data, tabletop);
             
             // Fill in "now" data
             $("#now").empty().append(_.template($("#tmpl-now").html(), data[data.length - 1]));
@@ -33,7 +33,7 @@ window.Tabletop = window.Tabletop || {};
                     type: 'area'
                 },
                 title: {
-                    text: '',
+                    text: ''
                 },
                 xAxis: {
                     type: 'category'
