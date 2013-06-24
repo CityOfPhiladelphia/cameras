@@ -35,7 +35,117 @@ window._ = window._ || {};
                 chartData.push([formatDate(row.date), Math.round(row.percent * 100)/100]);
             });
             
-            // Create chart
+            // Create gauge chart
+            $("#gauge").highcharts({
+                chart: {
+                    type: "gauge"
+                    ,plotBackgroundColor: null
+                    ,plotBackgroundImage: null
+                    ,plotBorderWidth: 0
+                    ,plotShadow: false
+                }
+                ,title: {
+                    text: ""
+                }
+                ,pane: {
+                    startAngle: -90
+                    ,endAngle: 90
+                    ,size: "120%"
+                    ,center: ["50%", "100%"]
+                    ,background: [{
+                        backgroundColor: {
+                            linearGradient: {x1: 0, y1: 0, x2: 0, y2: 1}
+                            ,stops: [
+                                [0, "#fff"]
+                                ,[1, "#333"]
+                            ]
+                        }
+                        ,borderWidth: 0
+                        ,outerRadius: "109%"
+                    }, {
+                        backgroundColor: {
+                            linearGradient: {x1: 0, y1: 0, x2: 0, y2: 1}
+                            ,stops: [
+                                [0, "#333"]
+                                ,[1, "#fff"]
+                            ]
+                        }
+                        ,borderWidth: 1
+                        ,outerRadius: "107%"
+                    }, {
+                        // default background
+                    }, {
+                        backgroundColor: "#ddd"
+                        ,borderWidth: 0
+                        ,outerRadius: "105%"
+                        ,innerRadius: "103%"
+                    }]
+                }
+                ,plotOptions: {
+                    gauge: {
+                        dial: {
+                            baseWidth: 4
+                            ,backgroundColor: "#c33"
+                            ,borderColor: "#900"
+                            ,borderWidth: 1
+                            ,rearLength: 20
+                            ,baseLength: 10
+                            ,radius: 80
+                        }
+                    }
+                }
+                ,yAxis: {
+                    min: 0
+                    ,max: 100
+                    
+                    ,minorTickInterval: "auto"
+                    ,minorTickWidth: 1
+                    ,minorTickLength: 10
+                    ,minorTickPosition: "inside"
+                    ,minorTickColor: "#666"
+                    
+                    ,tickPixelInterval: 60
+                    ,tickWidth: 4
+                    ,tickPosition: "inside"
+                    ,tickLength: 20
+                    ,tickColor: "#666"
+                    
+                    ,labels: {
+                        step: 2
+                        ,rotation: "auto"
+                        ,distance: -35
+                        ,style: {
+                            size: "140%"
+                            ,fontWeight: "bold"
+                        }
+                    }
+                    ,title: {
+                        text: "Percent Operational"
+                    }
+                    ,plotBands: [{
+                        from: 0
+                        ,to: 33
+                        ,color: "#df5353" // red
+                    }, {
+                        from: 33
+                        ,to: 66
+                        ,color: "#dddf0d" // yellow
+                    }, {
+                        from: 66
+                        ,to: 100
+                        ,color: "#55bf3b" // green
+                    }]
+                }
+                ,series: [{
+                    name: "Operating"
+                    ,data: [Math.round(data[data.length - 1].percent)]
+                    ,tooltip: {
+                        valueSuffix: "%"
+                    }
+                }]
+            });
+            
+            // Create timeline chart
             $('#chart').highcharts({
                 chart: {
                     type: 'area'
