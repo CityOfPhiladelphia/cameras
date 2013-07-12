@@ -36,6 +36,8 @@ body {
     margin-top: 28px;
 }
 
+h1.history { text-align: center; }
+
 @media (max-width: 480px) {
     .jumbotron h1 { font-size: 35px; }
 }

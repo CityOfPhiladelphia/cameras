@@ -27,7 +27,9 @@ window._ = window._ || {};
             loading(false);
             
             // Fill in "now" data
-            $("#now").empty().append(_.template($("#tmpl-now").html(), data[data.length - 1]));
+            var now = _.clone(data[data.length - 1]);
+            now.date = formatDate(now.date);
+            $("#now").empty().append(_.template($("#tmpl-now").html(), now));
             
             // Restructure data for chart
             var chartData = [];

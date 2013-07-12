@@ -10,3 +10,4 @@
 {"ts":1372097964692,"patch":[[{"diffs":[[0,"height: "],[-1,"4"],[1,"3"],[0,"00px; }\r"]],"start1":471,"start2":471,"length1":17,"length2":17}]],"length":1299,"saved":false}
 {"ts":1372098034307,"patch":[[{"diffs":[[0,"\r\n\r\n"],[-1,"#gauge { height: 300px; }\r\n\r\n"],[0,"/* S"]],"start1":458,"start2":458,"length1":37,"length2":8}]],"length":1270,"saved":false}
 {"ts":1372098119476,"patch":[[{"diffs":[[0,";\r\n}\r\n\r\n"],[1,"#gauge { height: 300px; }\r\n\r\n"],[0,"/* Suppo"]],"start1":454,"start2":454,"length1":16,"length2":45}]],"length":1299,"saved":false}
+{"contributors":[],"silentsave":false,"ts":1373645210792,"patch":[[{"diffs":[[0,";\r\n}\r\n\r\n"],[1,"h1.history { text-align: center; }\r\n\r\n"],[0,"@media ("]],"start1":606,"start2":606,"length1":16,"length2":54}]],"length":1337,"saved":false}
