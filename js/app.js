@@ -6,10 +6,15 @@ window._ = window._ || {};
     window.DEBUG = false;
     _.templateSettings.variable = "data"; // Namespace for template data
     
-    var formatDate = function(input) {
+    var formatDate = function(input, format) {
         var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-            ,parts = input ? input.split("-") : [];
-        return parts.length === 3 ? months[(new Date(parts[0], parts[1]-1, parts[2])).getMonth()] : input; // months are 0-based
+            ,parts = input ? input.split("-") : []
+            ,date = parts.length === 3 ? new Date(parts[0], parts[1]-1, parts[2]) : null;
+        if(date) {
+            if(format === "month") return months[date.getMonth()];
+            else return date.getMonth() + 1 + "/" + date.getDay() + "/" + date.getFullYear();
+        }
+        return input;
     };
     
     var loading = function(status) {
@@ -34,7 +39,7 @@ window._ = window._ || {};
             // Restructure data for chart
             var chartData = [];
             _.each(data, function(row) {
-                chartData.push([formatDate(row.date), Math.round(row.percent * 100)/100]);
+                chartData.push([formatDate(row.date, "month"), Math.round(row.percent * 100)/100]);
             });
             
             // Create gauge chart
