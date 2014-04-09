@@ -12,7 +12,7 @@ window._ = window._ || {};
             ,date = parts.length === 3 ? new Date(parts[0], parts[1]-1, parts[2]) : null;
         if(date) {
             if(format === "month") return months[date.getMonth()];
-            else return date.getMonth() + 1 + "/" + date.getDay() + "/" + date.getFullYear();
+            else return date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
         }
         return input;
     };
