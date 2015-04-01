@@ -11,7 +11,7 @@ window._ = window._ || {};
             ,parts = input ? input.split("-") : []
             ,date = parts.length === 3 ? new Date(parts[0], parts[1]-1, parts[2]) : null;
         if(date) {
-            if(format === "month") return months[date.getMonth()];
+            if(format === "month") return months[date.getMonth()] + " " + date.getFullYear();
             else return date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
         }
         return input;
@@ -24,7 +24,7 @@ window._ = window._ || {};
     loading(true);
     
     Tabletop.init({
-        key: "0AlMaW-4cviLodG1XSGszdkNmdGlZVzMyWG1vOVlieEE"
+        key: "https://docs.google.com/spreadsheets/d/1JfntIe2-5GDdsB9HgNp1FnhA-QWoJsu3mlfJHva721A/pubhtml?gid=0&single=true"
         ,simpleSheet: true
         ,callback: function(data, tabletop) {
             if(window.DEBUG) console.log(data, tabletop);
@@ -33,13 +33,13 @@ window._ = window._ || {};
             
             // Fill in "now" data
             var now = _.clone(data[data.length - 1]);
-            now.date = formatDate(now.date);
+            now["Date"] = formatDate(now["Date"]);
             $("#now").empty().append(_.template($("#tmpl-now").html(), now));
             
             // Restructure data for chart
             var chartData = [];
             _.each(data, function(row) {
-                chartData.push([formatDate(row.date, "month"), Math.round(row.percent * 100)/100]);
+                chartData.push([formatDate(row["Date"], "month"), Math.round(row.Percent * 100)/100]);
             });
             
             // Create gauge chart
